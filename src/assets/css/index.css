@@ -1,0 +1,235 @@
+@import 'bulma/css/bulma.css';
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background: #FAFAFA;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+body, button, input, select, textarea {
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
+}
+
+section {
+    margin: 2em 0;
+}
+
+section:first-of-type {
+    margin-top: 0;
+}
+
+a {
+    color: rgb(0, 130, 140);
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.body-content {
+    flex: 1;
+}
+
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+    line-height: 1.2 !important;
+}
+
+.container.is-fluid {
+    max-width: 967px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.panel {
+    display: flow-root;
+    padding: 30px;
+    border: solid 1px #ddd;
+    border-radius: 3px;
+}
+
+.notification {
+    max-width: 800px;
+    margin: auto;
+}
+
+.line-clamp {
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    position: relative;
+
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 !important;
+}
+
+.line-clamp:after {
+    content: '...';
+    text-align: right;
+    bottom: 0;
+    right: 0;
+    width: 25%;
+    display: block;
+    position: absolute;
+    height: calc(1em * 1.2);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 75%);
+}
+
+@supports (-webkit-line-clamp: 1) {
+    .line-clamp:after {
+        display: none !important;
+    }
+}
+
+.line-clamp-1 {
+    -webkit-line-clamp: 1;
+    height: calc(1em * 1.2 * 1);
+}
+
+.line-clamp-2 {
+    -webkit-line-clamp: 2;
+    height: calc(1em * 1.2 * 2);
+}
+
+.line-clamp-3 {
+    -webkit-line-clamp: 3;
+    height: calc(1em * 1.2 * 3);
+}
+
+.line-clamp-4 {
+    -webkit-line-clamp: 4;
+    height: calc(1em * 1.2 * 4);
+}
+
+.line-clamp-5 {
+    -webkit-line-clamp: 5;
+    height: calc(1em * 1.2 * 5);
+}
+
+.button.active {
+    display: inline-flex;
+}
+
+.button.active:after {
+    bottom: -13px
+}
+
+.button.is-primary:hover, 
+.button.is-primary.is-hovered {
+    background-color: #00737d;
+    border-color: transparent;
+}
+
+.button.is-primary {
+    background-color: #00818b;
+}
+
+.button.is-primary[disabled],
+fieldset[disabled] .button.is-primary {
+    background-color: #00818b;
+}
+
+.input:focus,
+.textarea:focus,
+.select select:focus,
+.is-focused.input,
+.is-focused.textarea,
+.select select.is-focused,
+.input:active, .textarea:active,
+.select select:active,
+.is-active.input,
+.is-active.textarea,
+.select select.is-active {
+    border-color: #00818b;
+    box-shadow: none;
+}
+
+.toastjs.success{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 30;
+    margin: auto;
+    width: 430px;
+    height: 90px;
+    background-color: #ffcb00;
+    padding: 1em 2.7em 1em 1em;
+    box-shadow: 0px 20px 20px 157em #00000094;
+}
+.toastjs p{
+    color: black;
+    font-weight: bold;
+}
+button.toastjs-btn{
+    padding: .5em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background: salmon;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+}
+button.toastjs-btn:hover{
+    cursor: pointer;
+    opacity: .9;
+}
+
+.table-responsive{
+    overflow-x: auto;
+    margin-bottom: 40px;
+}
+
+.table-responsive table{
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.table td{
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.clear{
+    display: table;
+    width: 100%;
+    clear: both;
+}
+
+@media (max-width: 1024px) {
+    section {
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container.is-fluid {
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+}
