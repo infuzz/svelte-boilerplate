@@ -2,7 +2,7 @@
 
 Svelte boilerplate - inspired by [Hackathon Starter](https://hackathon-starter.walcony.com)
 
-Koa API repo can be found here [koa-api](https://github.com/mylastore/express-api.git)
+Koa API repo can be found here [koa-api](https://github.com/mylastore/koa-api)
 
 
 ## Included 
@@ -25,7 +25,7 @@ Koa API repo can be found here [koa-api](https://github.com/mylastore/express-ap
 
 ## Getting started
 
-    https://github.com/mylastore/svelte-parcel.git
+    https://github.com/mylastore/svelte-boilerplate
 
     npm install && npm start
 
