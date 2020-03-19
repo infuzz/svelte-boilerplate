@@ -6,7 +6,6 @@
     import ls from 'local-storage';
     import userStore from "../../stores/userStore";
     import Message from "../../components/Message.svelte";
-    import {replace} from 'svelte-spa-router'
 
     let email = "";
     let password = "";
@@ -35,7 +34,7 @@
             } else {
                 ls.set('jwt', res.token);
                 userStore.setUser(res.user);
-                replace(`/user/profile`);
+                window.location.replace(`/`);
             }
         } catch (err) {
             if(err){

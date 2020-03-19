@@ -23,62 +23,79 @@ import jwt_decode from 'jwt-decode'
 import ls from 'local-storage'
 import * as api from './helpers/api'
 
+let routes
 let isAdmin = false;
 const token = ls.get('jwt')
 
 /* This will resfresh user data on the userStore only if browser reloads */
-if(token){
+if (token) {
     const decoded = jwt_decode(token)
     isAdmin = decoded.role === 'admin'
-    
-    if( Date.now() >= decoded.exp * 1000 ){
-        ls.remove('jwt');
-        return window.location.replace('/')      
-    } else {
-        async function getUser(){
-            try {
-                const res = await api.post(`user/account`, {}, token)
-                await userStore.setUser(res.user)
-    
-            } catch (error) {
-                ls.remove('jwt');
-                window.location.replace('/')            
-            }
-        }
-        getUser();
+
+    if (Date.now() >= decoded.exp * 1000) {
+        ls.remove('jwt')
+        window.location.replace('/')
     }
+    async function getUser() {
+        try {
+            const res = await api.post(`user/account`, {}, token)
+            await userStore.setUser(res.user)
+
+        } catch (error) {
+            ls.remove('jwt');
+            window.location.replace('/')
+        }
+    }
+    getUser();
+
 }
 
-let routes
+
 
 routes = new Map()
 
 routes.set('/', Home)
 routes.set('/brand', Home)
-routes.set('/login', wrap(Login, (detail) => { 
-    if(!token) return true
-}))
-routes.set('/register', wrap(Register, (detail) => {
-    if(!token) return true
-}))
-routes.set('/user/profile', wrap(UserProfile, detail => {
-    if(token) return true
-}))
-routes.set('/admin/users/:page', wrap(AdminUsers, detail => {
-    if(isAdmin) return true
-}))
-routes.set('/admin/user/:id', wrap(UserPage, detail => {
-    if(isAdmin) return true
-}))
-routes.set('/admin/quotes/:page', wrap(Quotes, detail => {
-    if(isAdmin) return true 
-}))
-routes.set('/admin/quote/:id', wrap(SingleQuote, detail => {
-    if(isAdmin) return true
-}))
-routes.set('/admin/settings', wrap(Settings, detail => {
-    if(isAdmin) return true
-}))
+routes.set('/login', wrap(Login,
+    (detail) => {
+        if (!token) { return true }
+    }
+))
+routes.set('/register', wrap(Register,
+    (detail) => {
+        if (!token) { return true }
+    }
+))
+routes.set('/user/profile', wrap(UserProfile,
+    (detail) => {
+        if (token) { return true }
+    }
+))
+routes.set('/admin/users/:page', wrap(AdminUsers,
+    (detail) => {
+        if (isAdmin) { return true }
+    }
+))
+routes.set('/admin/user/:id', wrap(UserPage,
+    (detail) => {
+        if (isAdmin) { return true }
+    }
+))
+routes.set('/admin/quotes/:page', wrap(Quotes,
+    (detail) => {
+        if (isAdmin) { return true }
+    }
+))
+routes.set('/admin/quote/:id', wrap(SingleQuote,
+    (detail) => {
+        if (isAdmin) { return true }
+    }
+))
+routes.set('/admin/settings', wrap(Settings,
+    (detail) => {
+        if (isAdmin) { return true }
+    }
+))
 routes.set('/quote', Quote)
 routes.set('/privacy', Privacy)
 routes.set('/contact', Contact)

@@ -12,7 +12,7 @@
   // Handles the "conditionsFailed" event dispatched by the router when a component can't be loaded because one of its pre-condition failed
   function conditionsFailed(event) {
     // Perform any action, for example replacing the current route
-     if (
+    if (
       event.detail.location === "/login" ||
       event.detail.location === "/register" ||
       event.detail.name === "Profile" ||
@@ -21,7 +21,7 @@
       event.detail.name === "Settings" ||
       event.detail.name === "Quotes"
     ) {
-      window.location.replace("/");
+      return window.location.replace("/");
     }
   }
 </script>

@@ -10,7 +10,6 @@
   } from "../../helpers/validate.js"
   import ls from "local-storage"
   import Message from "../../components/Message.svelte"
-  import { replace } from 'svelte-spa-router'
 
   let email = ""
   let password = ""
@@ -28,19 +27,15 @@
     error = null
     try {
       const res = await api.post("user/login", { email, password, strategy })
-      console.log('user data')
-      if (res && res.message) {
+       if (res && res.message) {
         return error = res.message
       }
       ls.set("jwt", res.token)
       userStore.setUser(res.user)
-      replace('/user/profile')
-      //window.location.replace('/');
+      window.location.replace('/');
       
     } catch (err) {
-      if (err) {
-        return error = err;
-      }
+      return error = err;
     }
   }
   function closeMessage(){
