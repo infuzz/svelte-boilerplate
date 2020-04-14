@@ -1,5 +1,6 @@
-export function validateRequired(val) {
-    return val.trim().length === 0;
+
+export function validateRequired(str) {
+  return (!str || 0 === str.length);
 }
 
 // // password must be 8 characters or more, must have a capital letter and 1 special character

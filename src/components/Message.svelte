@@ -6,14 +6,11 @@
        
     const dispatch = createEventDispatcher();
 
-    function closeMessage(){
-        dispatch('closeMessageEvent')
-    }
 </script>
 
 <div class="notification is-{messageType} alert-dismissible">
     {message}
-    <button type="button" class="close-button" on:click={closeMessage }>
+    <button type="button" class="close-button" on:click={()=> dispatch('closeMessageEvent')}>
         <span aria-hidden="true">&times;</span>
     </button>
 </div>

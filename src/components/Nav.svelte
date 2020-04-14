@@ -1,10 +1,10 @@
 <script>
-  import { onMount, onDestroy } from "svelte"
-  import active from "svelte-spa-router/active"
-  import { link } from "svelte-spa-router"
-  import userStore from "../../src/stores/userStore"
-  import ls from "local-storage"
-  import * as api from "../../src/helpers/api.js"
+  import { onMount, onDestroy } from "svelte";
+  import active from "svelte-spa-router/active";
+  import { link } from "svelte-spa-router";
+  import userStore from "../../src/stores/userStore";
+  import ls from "local-storage";
+  import * as api from "../../src/helpers/api.js";
 
   let unsubscribe;
   let currentUser;
@@ -35,7 +35,7 @@
     isAdmin = false;
     window.location.replace("/");
   }
-  
+
   function navAction(e) {
     isActive = !isActive;
   }
@@ -45,14 +45,14 @@
     if (isActive) {
       isActive = false;
     }
-    if(isOpen){
-      isOpen = false
+    if (isOpen) {
+      isOpen = false;
     }
   }
 
-  function dpAction(){
-     isOpen = !isOpen;
-   }
+  function dpAction() {
+    isOpen = !isOpen;
+  }
 
   onDestroy(() => {
     if (unsubscribe) {
@@ -84,24 +84,66 @@
   <div
     id="navbarBasicExample"
     class="navbar-menu {isActive ? 'is-active' : ''}">
-    
+
     <div class="navbar-start">
       {#if isAdmin}
-        <a class="navbar-item" href="/admin/users/1" use:link use:active={{path: '/admin/users/*', className: 'active'}}>Users</a>
-        <a class="navbar-item" href="/admin/quotes/1" use:link use:active={{path: '/admin/quotes/*', className: 'active' }}>Quotes</a>
-        <a class="navbar-item" href="/admin/settings" use:link use:active>Settings</a>
+        <a class="navbar-item" href="/admin/dashboard" use:link use:active>
+          Dashboard
+        </a>
+        <a
+          class="navbar-item"
+          href="/admin/users/1"
+          use:link
+          use:active={{ path: '/admin/users/*', className: 'active' }}>
+          Users
+        </a>
+        <a
+          class="navbar-item"
+          href="/admin/quotes/1"
+          use:link
+          use:active={{ path: '/admin/quotes/*', className: 'active' }}>
+          Quotes
+        </a>
+        <a class="navbar-item" href="/admin/settings" use:link use:active>
+          Settings
+        </a>
+       
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" href="/shop/1" use:link use:active={{ path: '/admin/shop/*', className: 'active' }}>
+          Shop
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="/admin/shop/add-listing" use:link use:active>
+            Add Listing
+          </a>
+          <a class="navbar-item" href="#/admin/shop/listings">
+            Listings
+          </a>
+          <a class="navbar-item">
+            Orders
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
+        </div>
+      </div>
+  
       {:else}
-      <a class="navbar-item" href="/" use:link use:active>Home</a>
-      <a class="navbar-item" href="/contact" use:link use:active>Contact</a>
+        <a class="navbar-item" href="/" use:link use:active>Home</a>
+        <a class="navbar-item" href="/shop/1" use:link use:active>Shop</a>
       {/if}
     </div>
-        
+
     <div class="navbar-end">
       {#if !currentUser}
         <a class="navbar-item" href="/login" use:link use:active>Log in</a>
       {:else}
         <!-- drop down click action -->
-        <div class="navbar-item has-dropdown" on:click|stopPropagation={dpAction}>
+        <div
+          class="navbar-item has-dropdown"
+          on:click|stopPropagation={dpAction}>
           {#if avatar}
             <span class="avatar navbar-item">
               <img src={avatar} alt="Profile Image" />
@@ -111,9 +153,13 @@
           <!-- show drop down -->
           <div class="navbar-dropdown is-right {isOpen ? 'dp-show' : ''}">
             {#if isAdmin}
-              <a class="navbar-item" href="/admin/users/1" use:link use:active>Admin</a>
+              <a class="navbar-item" href="/admin/users/1" use:link use:active>
+                Admin
+              </a>
             {/if}
-            <a class="navbar-item" href="/user/profile" use:link use:active>Profile</a>
+            <a class="navbar-item" href="/user/profile" use:link use:active>
+              Profile
+            </a>
             <hr class="navbar-divider" />
             <a class="navbar-item" on:click={logOut} href="#0">Logout</a>
           </div>
@@ -177,8 +223,14 @@
     margin-bottom: 2.5rem;
   }
 
+  :global(.navbar-dropdown a.navbar-item.active::before){
+    background-color: transparent !important;
+    display: none;
+
+  }
+
   /* Style for "active" links; need to mark this :global because the router adds the class directly */
-  :global(a.active::after) {
+  :global(a.active::before) {
     position: absolute;
     content: "";
     width: calc(100% - 1.5em);
@@ -201,7 +253,7 @@
   .navbar-brand a {
     padding: 1em 1.5em;
   }
-  .dp-show{
+  .dp-show {
     display: block;
   }
 

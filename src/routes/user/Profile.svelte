@@ -6,7 +6,6 @@
   import * as api from "../../helpers/api.js";
   import Message from "../../components/Message.svelte";
   import {
-    validateRequired,
     validateEmail,
     validatePassword
   } from "../../helpers/validate";
@@ -79,7 +78,6 @@
       if (res.message) {
         return (message = res.message);
       }
-
       messageType = "success";
       userStore.setUser(res.user);
       message = "User profile was updated successfully!";

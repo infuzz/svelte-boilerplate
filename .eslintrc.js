@@ -1,5 +1,5 @@
 module.exports = {
-  // "extends": "plugin:prettier/recommended",
+  "extends": "plugin:prettier/recommended",
   parser: "babel-eslint",
   plugins: ["svelte3"],
   overrides: [

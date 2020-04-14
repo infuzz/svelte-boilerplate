@@ -20,10 +20,11 @@
     const resetForm = document.getElementById("password-reset-form");
     const userData = {
       password: password,
-      passwordConfirmation: passwordConfirmation
+      passwordConfirmation: passwordConfirmation,
+      passwordResetToken: params.resetToken
     };
     try {
-      const res = await api.post(`users/reset/${params.resetToken}`, userData);
+      const res = await api.post(`user/reset-password`, userData);
       if (res && res.errors) {
         return message = res.errors.message;
       }

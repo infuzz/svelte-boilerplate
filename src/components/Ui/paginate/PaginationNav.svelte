@@ -92,4 +92,8 @@
     background: lightgray;
     cursor: not-allowed;
   }
+  .pagination{
+    padding: 40px 0;
+    width: 100%;
+  }
 </style>

@@ -18,6 +18,12 @@ import Reset from './routes/Reset'
 import AdminUsers from './routes/admin/Users'
 import UserPage from './routes/admin/UserPage'
 import Settings from './routes/admin/Settings'
+import Shop from './routes/shop/shop'
+import Dashboard from './routes/admin/Dashboard'
+import AddListing from './routes/admin/shop/AddListing'
+import EditListing from './routes/admin/shop/EditListing'
+import ListingDetail from './routes/shop/listing-detail'
+import Listings from './routes/admin/shop/Listings'
 import userStore from './stores/userStore'
 import jwt_decode from 'jwt-decode'
 import ls from 'local-storage'
@@ -50,15 +56,13 @@ if (token) {
 
 }
 
-
-
 routes = new Map()
 
 routes.set('/', Home)
 routes.set('/brand', Home)
 routes.set('/login', wrap(Login,
     (detail) => {
-        if (!token) { return true }
+        if (!token) return true
     }
 ))
 routes.set('/register', wrap(Register,
@@ -68,35 +72,59 @@ routes.set('/register', wrap(Register,
 ))
 routes.set('/user/profile', wrap(UserProfile,
     (detail) => {
-        if (token) { return true }
+        if (token) return true
     }
 ))
 routes.set('/admin/users/:page', wrap(AdminUsers,
     (detail) => {
-        if (isAdmin) { return true }
+        if (isAdmin) return true
     }
 ))
 routes.set('/admin/user/:id', wrap(UserPage,
     (detail) => {
-        if (isAdmin) { return true }
+        if (isAdmin) return true
     }
 ))
 routes.set('/admin/quotes/:page', wrap(Quotes,
     (detail) => {
-        if (isAdmin) { return true }
+        if (isAdmin) return true
     }
 ))
 routes.set('/admin/quote/:id', wrap(SingleQuote,
     (detail) => {
-        if (isAdmin) { return true }
+        if (isAdmin) return true
     }
 ))
 routes.set('/admin/settings', wrap(Settings,
     (detail) => {
-        if (isAdmin) { return true }
+        if (isAdmin) return true 
     }
 ))
+routes.set('/admin/dashboard', wrap(Dashboard,
+    (detail) => {
+        if(isAdmin) return true
+    }
+    
+))
+routes.set('/admin/shop/listings', wrap(Listings, 
+    (detail) => {
+        if(isAdmin) return true
+    }
+))
+routes.set('/admin/shop/add-listing', wrap(AddListing,
+    (detail) => {
+        if(isAdmin) return true
+    }
+    
+))
+routes.set('/admin/shop/edit-listing/:id', wrap(EditListing,
+    (detail) => {
+        if(isAdmin) return true
+    }
+))
+routes.set('/shop/listing-detail/:id', ListingDetail)
 routes.set('/quote', Quote)
+routes.set('/shop/:page', Shop)
 routes.set('/privacy', Privacy)
 routes.set('/contact', Contact)
 routes.set('/forgot', Forgot)

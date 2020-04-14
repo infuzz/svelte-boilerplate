@@ -1,9 +1,19 @@
 
+import ls from 'local-storage';
+import jwt_decode from 'jwt-decode'
 const base = 'http://localhost:8000/api/v1';
 
 function send({ method, path, data, token }) {
-	const fetch = process.browser ? window.fetch : require('node-fetch').default;
 
+	if(ls.get('jwt')){
+		const decoded = jwt_decode(ls.get('jwt'))
+		if (Date.now() >= decoded.exp * 1000) {
+			ls.remove('jwt')
+			return window.location.replace('/')
+		}
+	}
+	
+	const fetch = process.browser ? window.fetch : require('node-fetch').default;
 	const opts = { method, headers: {} };
 
 	if (data) {
