@@ -1,8 +1,8 @@
 <script>
   import * as api from "/src/helpers/api";
   import Message from "/src/components/Message.svelte";
-  import LoadingSpinner from "/src/components/UI/LoadingSpinner";
-  import { paginate, PaginationNav } from "/src/components/Ui/paginate";
+  import LoadingSpinner from "/src/components/Ui/LoadingSpinner.svelte";
+  import { paginate, PaginationNav } from "/src/components/Ui/paginate/index.js";
   import { onMount, onDestroy } from "svelte";
   import { push } from 'svelte-spa-router';
 

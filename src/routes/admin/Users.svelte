@@ -8,7 +8,7 @@
   import { Toast } from "../../helpers/toast";
   import defaultImg from "../../assets/images/default-image.jpg";
   import { push } from "svelte-spa-router";
-  import { paginate, PaginationNav } from "../../components/Ui/paginate";
+  import { paginate, PaginationNav } from "../../components/Ui/paginate/index.js";
 
   export let params = {};
 

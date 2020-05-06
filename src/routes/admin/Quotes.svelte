@@ -1,10 +1,10 @@
 <script>
   import * as api from "../../helpers/api.js";
-  import Message from "../../components/Message";
+  import Message from "../../components/Message.svelte";
   import ls from "local-storage";
   import LoadingSpinner from "../../components/Ui/LoadingSpinner.svelte";
-  import { paginate, PaginationNav } from "../../components/Ui/Paginate";
-  import { formatDate } from "../../helpers/utils";
+  import { paginate, PaginationNav } from "../../components/Ui/paginate/index.js";
+  import { formatDate } from "../../helpers/utils.js";
   import { onMount, onDestroy } from "svelte";
   import path from 'path';
   import { push } from 'svelte-spa-router';
